@@ -9,10 +9,10 @@
     "url": "/d/E8MA5ksWz/octoprint",
     "expires": "0001-01-01T00:00:00Z",
     "created": "2020-01-19T10:05:43Z",
-    "updated": "2020-01-27T10:30:46Z",
+    "updated": "2020-02-07T20:42:26Z",
     "updatedBy": "admin",
     "createdBy": "admin",
-    "version": 20,
+    "version": 25,
     "hasAcl": false,
     "isFolder": false,
     "folderId": 0,
@@ -368,7 +368,7 @@
           "#d44a3a"
         ],
         "datasource": "Prometheus",
-        "format": "none",
+        "format": "celsius",
         "gauge": {
           "maxValue": 100,
           "minValue": 0,
@@ -442,55 +442,6 @@
         "valueName": "current"
       },
       {
-        "clusterName": "Printer",
-        "colorMode": "Panel",
-        "colors": {
-          "crit": "rgba(245, 54, 54, 0.9)",
-          "disable": "rgba(128, 128, 128, 0.9)",
-          "ok": "rgba(50, 128, 45, 0.9)",
-          "warn": "#37872D"
-        },
-        "cornerRadius": 0,
-        "datasource": "Prometheus",
-        "displayName": "Printer",
-        "flipCard": false,
-        "flipTime": "5",
-        "fontFormat": "Regular",
-        "gridPos": {
-          "h": 2,
-          "w": 2,
-          "x": 13,
-          "y": 1
-        },
-        "id": 34,
-        "isAutoScrollOnOverflow": false,
-        "isGrayOnNoData": true,
-        "isHideAlertsOnDisable": false,
-        "isIgnoreOKColors": false,
-        "options": {},
-        "targets": [
-          {
-            "aggregation": "Last",
-            "alias": "switch",
-            "crit": 0,
-            "decimals": null,
-            "disabledValue": "0",
-            "displayAliasType": "Always",
-            "displayType": "Regular",
-            "displayValueWithAlias": "Never",
-            "expr": "hs110_sysinfo_relay_state ",
-            "refId": "A",
-            "units": "short",
-            "valueHandler": "Number Threshold",
-            "warn": 1
-          }
-        ],
-        "timeFrom": null,
-        "timeShift": null,
-        "title": "",
-        "type": "vonage-status-panel"
-      },
-      {
         "cacheTimeout": null,
         "colorBackground": false,
         "colorValue": false,
@@ -500,7 +451,7 @@
           "#d44a3a"
         ],
         "datasource": "Prometheus",
-        "format": "none",
+        "format": "rpi",
         "gauge": {
           "maxValue": 100,
           "minValue": 0,
@@ -510,11 +461,11 @@
         },
         "gridPos": {
           "h": 3,
-          "w": 3,
-          "x": 15,
+          "w": 2,
+          "x": 13,
           "y": 1
         },
-        "id": 18,
+        "id": 46,
         "interval": null,
         "links": [],
         "mappingType": 1,
@@ -554,15 +505,14 @@
         "tableColumn": "",
         "targets": [
           {
-            "expr": "octoprint_client_num",
-            "legendFormat": "Clients",
+            "expr": "octoprint_print_fan_speed",
             "refId": "A"
           }
         ],
         "thresholds": "",
         "timeFrom": null,
         "timeShift": null,
-        "title": "Client Number",
+        "title": "Fan speed",
         "type": "singlestat",
         "valueFontSize": "80%",
         "valueMaps": [
@@ -573,6 +523,95 @@
           }
         ],
         "valueName": "current"
+      },
+      {
+        "datasource": null,
+        "gridPos": {
+          "h": 5,
+          "w": 3,
+          "x": 15,
+          "y": 1
+        },
+        "id": 48,
+        "options": {
+          "colorMode": "value",
+          "fieldOptions": {
+            "calcs": [
+              "mean"
+            ],
+            "defaults": {
+              "mappings": [],
+              "thresholds": {
+                "mode": "absolute",
+                "steps": [
+                  {
+                    "color": "green",
+                    "value": null
+                  },
+                  {
+                    "color": "red",
+                    "value": 80
+                  }
+                ]
+              },
+              "unit": "HRK"
+            },
+            "overrides": [],
+            "values": false
+          },
+          "graphMode": "area",
+          "justifyMode": "auto",
+          "orientation": "auto"
+        },
+        "pluginVersion": "6.6.1",
+        "targets": [
+          {
+            "groupBy": [
+              {
+                "params": [
+                  "$__interval"
+                ],
+                "type": "time"
+              },
+              {
+                "params": [
+                  "null"
+                ],
+                "type": "fill"
+              }
+            ],
+            "measurement": "kWh",
+            "orderByTime": "ASC",
+            "policy": "autogen",
+            "refId": "A",
+            "resultFormat": "time_series",
+            "select": [
+              [
+                {
+                  "params": [
+                    "value"
+                  ],
+                  "type": "field"
+                },
+                {
+                  "params": [],
+                  "type": "mean"
+                },
+                {
+                  "params": [
+                    " * 0.82"
+                  ],
+                  "type": "math"
+                }
+              ]
+            ],
+            "tags": []
+          }
+        ],
+        "timeFrom": null,
+        "timeShift": null,
+        "title": "Electricity total",
+        "type": "stat"
       },
       {
         "columns": [],
@@ -596,6 +635,7 @@
         "styles": [
           {
             "alias": "Spool ID",
+            "align": "auto",
             "colorMode": null,
             "colors": [
               "rgba(245, 54, 54, 0.9)",
@@ -616,6 +656,7 @@
           },
           {
             "alias": "Used",
+            "align": "auto",
             "colorMode": "value",
             "colors": [
               "rgba(50, 172, 45, 0.97)",
@@ -635,6 +676,7 @@
           },
           {
             "alias": "Spool",
+            "align": "auto",
             "colorMode": null,
             "colors": [
               "rgba(245, 54, 54, 0.9)",
@@ -659,6 +701,7 @@
           },
           {
             "alias": "Price",
+            "align": "auto",
             "colorMode": null,
             "colors": [
               "rgba(245, 54, 54, 0.9)",
@@ -681,6 +724,7 @@
           },
           {
             "alias": "",
+            "align": "auto",
             "colorMode": null,
             "colors": [
               "rgba(245, 54, 54, 0.9)",
@@ -780,12 +824,12 @@
           "thresholdMarkers": true
         },
         "gridPos": {
-          "h": 3,
+          "h": 2,
           "w": 2,
           "x": 13,
-          "y": 3
+          "y": 4
         },
-        "id": 46,
+        "id": 18,
         "interval": null,
         "links": [],
         "mappingType": 1,
@@ -825,14 +869,15 @@
         "tableColumn": "",
         "targets": [
           {
-            "expr": "octoprint_print_fan_speed",
+            "expr": "octoprint_client_num",
+            "legendFormat": "Clients",
             "refId": "A"
           }
         ],
         "thresholds": "",
         "timeFrom": null,
         "timeShift": null,
-        "title": "Fan speed",
+        "title": "Client Number",
         "type": "singlestat",
         "valueFontSize": "80%",
         "valueMaps": [
@@ -1065,7 +1110,7 @@
         "bars": false,
         "dashLength": 10,
         "dashes": false,
-        "datasource": "Prometheus",
+        "datasource": "InfluxDB",
         "fill": 1,
         "fillGradient": 0,
         "gridPos": {
@@ -1102,9 +1147,41 @@
         "steppedLine": false,
         "targets": [
           {
-            "expr": "hs110_realtime_current_ma/1000",
-            "legendFormat": "",
-            "refId": "A"
+            "alias": "Octoprint",
+            "groupBy": [
+              {
+                "params": [
+                  "$__interval"
+                ],
+                "type": "time"
+              },
+              {
+                "params": [
+                  "previous"
+                ],
+                "type": "fill"
+              }
+            ],
+            "measurement": "A",
+            "orderByTime": "ASC",
+            "policy": "default",
+            "refId": "A",
+            "resultFormat": "time_series",
+            "select": [
+              [
+                {
+                  "params": [
+                    "value"
+                  ],
+                  "type": "field"
+                },
+                {
+                  "params": [],
+                  "type": "mean"
+                }
+              ]
+            ],
+            "tags": []
           }
         ],
         "thresholds": [],
@@ -1153,7 +1230,7 @@
         "bars": false,
         "dashLength": 10,
         "dashes": false,
-        "datasource": "Prometheus",
+        "datasource": "InfluxDB",
         "fill": 1,
         "fillGradient": 0,
         "gridPos": {
@@ -1189,9 +1266,41 @@
         "steppedLine": false,
         "targets": [
           {
-            "expr": "hs110_realtime_power_mw/1000",
-            "legendFormat": "",
-            "refId": "A"
+            "alias": "Octoprint",
+            "groupBy": [
+              {
+                "params": [
+                  "$__interval"
+                ],
+                "type": "time"
+              },
+              {
+                "params": [
+                  "previous"
+                ],
+                "type": "fill"
+              }
+            ],
+            "measurement": "W",
+            "orderByTime": "ASC",
+            "policy": "default",
+            "refId": "A",
+            "resultFormat": "time_series",
+            "select": [
+              [
+                {
+                  "params": [
+                    "value"
+                  ],
+                  "type": "field"
+                },
+                {
+                  "params": [],
+                  "type": "mean"
+                }
+              ]
+            ],
+            "tags": []
           }
         ],
         "thresholds": [],
@@ -1240,7 +1349,7 @@
         "bars": false,
         "dashLength": 10,
         "dashes": false,
-        "datasource": "Prometheus",
+        "datasource": "InfluxDB",
         "fill": 1,
         "fillGradient": 0,
         "gridPos": {
@@ -1277,8 +1386,41 @@
         "steppedLine": false,
         "targets": [
           {
-            "expr": "hs110_realtime_voltage_mv /1000",
-            "refId": "A"
+            "alias": "Octoprint",
+            "groupBy": [
+              {
+                "params": [
+                  "$__interval"
+                ],
+                "type": "time"
+              },
+              {
+                "params": [
+                  "previous"
+                ],
+                "type": "fill"
+              }
+            ],
+            "measurement": "V",
+            "orderByTime": "ASC",
+            "policy": "default",
+            "refId": "A",
+            "resultFormat": "time_series",
+            "select": [
+              [
+                {
+                  "params": [
+                    "value"
+                  ],
+                  "type": "field"
+                },
+                {
+                  "params": [],
+                  "type": "mean"
+                }
+              ]
+            ],
+            "tags": []
           }
         ],
         "thresholds": [],
@@ -1327,7 +1469,7 @@
         "bars": false,
         "dashLength": 10,
         "dashes": false,
-        "datasource": "Prometheus",
+        "datasource": "InfluxDB",
         "fill": 1,
         "fillGradient": 0,
         "gridPos": {
@@ -1363,8 +1505,41 @@
         "steppedLine": false,
         "targets": [
           {
-            "expr": "hs110_realtime_total_wh",
-            "refId": "A"
+            "alias": "Octoprint",
+            "groupBy": [
+              {
+                "params": [
+                  "$__interval"
+                ],
+                "type": "time"
+              },
+              {
+                "params": [
+                  "previous"
+                ],
+                "type": "fill"
+              }
+            ],
+            "measurement": "kWh",
+            "orderByTime": "ASC",
+            "policy": "default",
+            "refId": "A",
+            "resultFormat": "time_series",
+            "select": [
+              [
+                {
+                  "params": [
+                    "value"
+                  ],
+                  "type": "field"
+                },
+                {
+                  "params": [],
+                  "type": "mean"
+                }
+              ]
+            ],
+            "tags": []
           }
         ],
         "thresholds": [],
@@ -1440,6 +1615,9 @@
               "mean"
             ],
             "defaults": {
+              "color": {
+                "mode": "thresholds"
+              },
               "mappings": [
                 {
                   "id": 0,
@@ -1452,24 +1630,28 @@
               "max": 100,
               "min": 0,
               "nullValueMode": "connected",
-              "thresholds": [
-                {
-                  "color": "green",
-                  "value": null
-                },
-                {
-                  "color": "red",
-                  "value": 80
-                }
-              ],
+              "thresholds": {
+                "mode": "absolute",
+                "steps": [
+                  {
+                    "color": "green",
+                    "value": null
+                  },
+                  {
+                    "color": "red",
+                    "value": 80
+                  }
+                ]
+              },
               "unit": "none"
             },
-            "override": {},
+            "overrides": [],
             "values": false
           },
-          "orientation": "horizontal"
+          "orientation": "horizontal",
+          "showUnfilled": true
         },
-        "pluginVersion": "6.5.3",
+        "pluginVersion": "6.6.1",
         "repeat": null,
         "targets": [
           {
@@ -1674,8 +1856,8 @@
         }
       }
     ],
-    "refresh": "10s",
-    "schemaVersion": 21,
+    "refresh": false,
+    "schemaVersion": 22,
     "style": "dark",
     "tags": [],
     "templating": {
@@ -1702,7 +1884,7 @@
     "timezone": "",
     "title": "Octoprint",
     "uid": "E8MA5ksWz",
-    "version": 20
+    "version": 25
   },
   "overwrite": true
 }
