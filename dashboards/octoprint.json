@@ -9,10 +9,10 @@
     "url": "/d/E8MA5ksWz/octoprint",
     "expires": "0001-01-01T00:00:00Z",
     "created": "2020-01-19T10:05:43Z",
-    "updated": "2020-02-07T20:42:26Z",
+    "updated": "2020-02-25T18:14:46Z",
     "updatedBy": "admin",
     "createdBy": "admin",
-    "version": 25,
+    "version": 27,
     "hasAcl": false,
     "isFolder": false,
     "folderId": 0,
@@ -533,6 +533,7 @@
           "y": 1
         },
         "id": 48,
+        "interval": "",
         "options": {
           "colorMode": "value",
           "fieldOptions": {
@@ -563,7 +564,7 @@
           "justifyMode": "auto",
           "orientation": "auto"
         },
-        "pluginVersion": "6.6.1",
+        "pluginVersion": "6.6.2",
         "targets": [
           {
             "groupBy": [
@@ -595,7 +596,7 @@
                 },
                 {
                   "params": [],
-                  "type": "mean"
+                  "type": "sum"
                 },
                 {
                   "params": [
@@ -1651,7 +1652,7 @@
           "orientation": "horizontal",
           "showUnfilled": true
         },
-        "pluginVersion": "6.6.1",
+        "pluginVersion": "6.6.2",
         "repeat": null,
         "targets": [
           {
@@ -1884,7 +1885,7 @@
     "timezone": "",
     "title": "Octoprint",
     "uid": "E8MA5ksWz",
-    "version": 25
+    "version": 27
   },
   "overwrite": true
 }
