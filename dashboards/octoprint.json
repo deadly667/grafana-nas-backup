@@ -9,10 +9,10 @@
     "url": "/d/E8MA5ksWz/octoprint",
     "expires": "0001-01-01T00:00:00Z",
     "created": "2020-01-19T10:05:43Z",
-    "updated": "2020-02-25T18:14:46Z",
+    "updated": "2020-03-07T20:55:51Z",
     "updatedBy": "admin",
     "createdBy": "admin",
-    "version": 27,
+    "version": 28,
     "hasAcl": false,
     "isFolder": false,
     "folderId": 0,
@@ -715,7 +715,7 @@
             "pattern": "cost",
             "thresholds": [],
             "type": "number",
-            "unit": "currencyEUR",
+            "unit": "currencyUSD",
             "valueMaps": [
               {
                 "text": "",
@@ -1885,7 +1885,7 @@
     "timezone": "",
     "title": "Octoprint",
     "uid": "E8MA5ksWz",
-    "version": 27
+    "version": 28
   },
   "overwrite": true
 }
